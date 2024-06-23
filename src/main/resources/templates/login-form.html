@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+       .container {
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+       .form-control {
+            background-color: #f7f7f7;
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 16px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+       .form-control:focus {
+            border: 1px solid #337ab7;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+       .btn {
+            background-color: #337ab7;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+       .btn:hover {
+            background-color: #23527c;
+        }
+       .form-group {
+            margin-bottom: 20px;
+        }
+       .label-text {
+            font-weight: bold;
+            color: #337ab7;
+        }
+       .login-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+       .login-header h2 {
+            font-weight: bold;
+            color: #337ab7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="#" th:action="@{/login}" th:object="${user}" method="post">
+            <div class="login-header">
+                <h2>Login</h2>
+            </div>
+            <div class="form-group">
+                <label for="name" class="label-text">Name:</label>
+                <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="password" class="label-text">Password:</label>
+                <input type="password" th:field="*{password}" class="form-control" id="password" placeholder="Enter your password">
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn">Login</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

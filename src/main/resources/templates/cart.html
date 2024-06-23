@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cart</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5 mb-4">Your Cart</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Assuming ${cartItems} is a Thymeleaf iterable -->
+                <tr th:each="cartItem : ${cartItems}">
+                    <td th:text="${cartItem.product.id}"></td>
+                    <td th:text="${cartItem.product.name}"></td>
+                    <td th:text="${cartItem.product.price}"></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th scope="row" colspan="2">Total:</th>
+                    <td th:text="${totalAmount}"></td>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="row">
+            <div class="col-md-6">
+                <a href="/products" class="btn btn-primary">Continue Shopping</a>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="submit" class="btn btn-success">Pay Now</button>
+                <button th:onclick="'javascript:clearCart()'" class="btn btn-danger">Clear Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        function clearCart() {
+            $.ajax({
+                type: 'POST',
+                url: '/clear-cart',
+                success: function() {
+                    location.reload();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
